@@ -12,7 +12,9 @@ runs:
   using: 'composite'
   steps:
     - uses: actions/checkout@v3
-    - uses: docker://ghcr.io/${{ github.action_repository }}
+    - uses: docker://ghcr.io/${{ env.ACTION_REPOSITORY }}
+      env:
+        ACTION_REPOSITORY: ${{github.action_repository}}
       with:
         args:
           - ${{ inputs.who-to-greet }}
