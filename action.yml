@@ -15,4 +15,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.who-to-greet }}
-    - ${{ env.action_repo }}
+    - $action_repo
