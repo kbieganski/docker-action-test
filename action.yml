@@ -5,15 +5,14 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
-  repo:
-    description: 'The action repo'
-    default: ${{ github.action_repository }}
 outputs:
   time: # id of output
     description: 'The time we greeted you'
+env:
+  action_repo: ${{ github.action_repository }}
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.who-to-greet }}
-    - ${{ inputs.repo }}
+    - ${{ env.action_repo }}
