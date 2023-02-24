@@ -9,8 +9,10 @@ outputs:
   time: # id of output
     description: 'The time we greeted you'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
-    - ${{ vars.ACTION_REPO }}
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v3
+    - uses: docker://ghcr.io/${{ github.action_repository }}
+      with:
+        args:
+          - ${{ inputs.who-to-greet }}
